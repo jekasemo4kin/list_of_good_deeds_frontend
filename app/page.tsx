@@ -7,25 +7,32 @@ import { RootState } from '../store';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import ActionButtons from '../components/ui/ActionButtons';
+import ResultList from '../components/todos/ResultList';
+import CreateTodoModal from '../components/todos/CreateTodoModal';
 
 export default function HomePage() {
-  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+  const { isAuthenticated, isInitialized } = useSelector((state: RootState) => state.auth);
   const router = useRouter();
 
   useEffect(() => {
-    if (!isAuthenticated) {
+
+    if (isInitialized && !isAuthenticated) {
       router.push('/login');
     }
-  }, [isAuthenticated, router]);
+  }, [isAuthenticated, isInitialized, router]);
 
+  if (!isInitialized) return null;
+  
   return (
     <MainLayout>
       <div className="flex flex-col gap-4">
         <ActionButtons />
         <SearchBar />
         <TitleBar />
-        {/* Здесь будет ResultList */}
+        <ResultList /> {/* Список появился здесь */}
       </div>
+
+      <CreateTodoModal />
     </MainLayout>
   );
 }

@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './slices/auth';
 import todosReducer from './slices/todos';
+import uiReducer from './slices/ui';
 import friendsReducer from './slices/friends';
 
 export const store = configureStore({
@@ -8,6 +9,7 @@ export const store = configureStore({
     auth: authReducer,
     todos: todosReducer,
     friends: friendsReducer,
+    ui: uiReducer,
   },
 });
 

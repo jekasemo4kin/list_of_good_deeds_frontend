@@ -4,6 +4,7 @@ import { RootState } from '../../store';
 import { fetchTodos, setSearchQuery } from '../../store/slices/todos';
 import { AppDispatch } from '../../store';
 import Button from './Button';
+import { setCreateModalOpen } from '../../store/slices/ui';
 
 export default function ActionButtons() {
   const dispatch = useDispatch<AppDispatch>();
@@ -25,7 +26,7 @@ export default function ActionButtons() {
     <div className="flex flex-wrap gap-2">
       <Button onClick={handleAllTodos} variant="secondary">Все Дела</Button>
       <Button onClick={() => alert('Мои друзья (модалка)')} variant="secondary">Мои Друзья</Button>
-      <Button onClick={() => alert('Создать дело (модалка)')} variant="primary">Создать Дело</Button>
+      <Button onClick={() => dispatch(setCreateModalOpen(true))} variant="primary">Создать Дело</Button>
       <Button onClick={handleMyTodos} variant="secondary">Мои Дела</Button>
     </div>
   );

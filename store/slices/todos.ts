@@ -50,6 +50,10 @@ const todosSlice = createSlice({
     removeTodoLocally: (state, action: PayloadAction<string>) => {
       state.todos = state.todos.filter((t) => t.id !== action.payload);
     },
+    removeTodoLocallyByAuthor: (state, action: PayloadAction<string>) => {
+  // Фильтруем все дела, автор которых не совпадает с переданным userId
+      state.todos = state.todos.filter((t) => t.authorId !== action.payload);
+},
   },
   extraReducers: (builder) => {
     builder
@@ -68,5 +72,5 @@ const todosSlice = createSlice({
   },
 });
 
-export const { setSearchQuery, updateTodoLocally, removeTodoLocally } = todosSlice.actions;
+export const { setSearchQuery, updateTodoLocally, removeTodoLocally, removeTodoLocallyByAuthor } = todosSlice.actions;
 export default todosSlice.reducer;

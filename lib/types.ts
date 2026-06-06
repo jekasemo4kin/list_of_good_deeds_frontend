@@ -39,6 +39,7 @@ export interface FriendshipUpdatedEvent {
 export interface RegisterDto {
   username: string;
   password: string;
+  confirmPassword: string;
 }
 
 export interface LoginDto {

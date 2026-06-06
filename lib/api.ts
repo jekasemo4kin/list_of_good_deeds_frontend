@@ -13,10 +13,9 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Пользователь не авторизован (кука поддельная или истекла)
-      store.dispatch(logout());
-      // Перенаправление на логин, если мы на клиенте
-      if (typeof window !== 'undefined') {
+      // Если мы уже на странице логина, не нужно делать редирект
+      if (window.location.pathname !== '/login' && window.location.pathname !== '/register') {
+        store.dispatch(logout());
         window.location.href = '/login';
       }
     }
@@ -29,6 +28,7 @@ export const authApi = {
   login: (data: LoginDto) => api.post<User>('/auth/login', data),
   logout: () => api.post('/auth/logout'),
   deleteProfile: () => api.delete('/auth/profile'),
+  getMe: () => api.get<User>('/auth/me'),
 };
 
 export const todosApi = {

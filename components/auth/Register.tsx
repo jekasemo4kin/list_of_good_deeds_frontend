@@ -30,7 +30,8 @@ export default function Register() {
     try {
       await authApi.register({ 
         username: trimmedUsername, 
-        password: trimmedPassword 
+        password: trimmedPassword,
+        confirmPassword: trimmedPassword
       });
       alert('Регистрация успешна! Теперь войдите.');
       router.push('/login');
