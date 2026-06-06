@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import ActionButtons from '../components/ui/ActionButtons';
 
 export default function HomePage() {
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
@@ -20,10 +21,10 @@ export default function HomePage() {
   return (
     <MainLayout>
       <div className="flex flex-col gap-4">
-        {/* Кнопки действий (Все дела, Друзья, Создать, Мои дела) будут здесь */}
+        <ActionButtons />
         <SearchBar />
         <TitleBar />
-        {/* ResultList будет здесь */}
+        {/* Здесь будет ResultList */}
       </div>
     </MainLayout>
   );
