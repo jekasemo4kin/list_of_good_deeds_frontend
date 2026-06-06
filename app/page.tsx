@@ -1,5 +1,7 @@
 'use client';
 import MainLayout from '../components/layout/MainLayout';
+import SearchBar from '../components/ui/SearchBar';
+import TitleBar from '../components/ui/TitleBar';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { useRouter } from 'next/navigation';
@@ -17,8 +19,12 @@ export default function HomePage() {
 
   return (
     <MainLayout>
-      <h1 className="text-2xl font-bold">Список добрых дел</h1>
-      {/* Здесь будут SearchBar и ResultList */}
+      <div className="flex flex-col gap-4">
+        {/* Кнопки действий (Все дела, Друзья, Создать, Мои дела) будут здесь */}
+        <SearchBar />
+        <TitleBar />
+        {/* ResultList будет здесь */}
+      </div>
     </MainLayout>
   );
 }

@@ -8,7 +8,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-grow p-4 md:p-8">
+      <main className="grow p-4 md:p-8">
         {children}
       </main>
     </div>
