@@ -35,3 +35,23 @@ export interface FriendshipUpdatedEvent {
   followerId: string;
   followingId: string;
 }
+
+export interface RegisterDto {
+  username: string;
+  password: string;
+}
+
+export interface LoginDto {
+  username: string;
+  password: string;
+}
+
+export interface CreateTodoDto {
+  title: string;
+  description: string;
+}
+
+export interface UpdateTodoDto {
+  title?: string;
+  description?: string;
+}

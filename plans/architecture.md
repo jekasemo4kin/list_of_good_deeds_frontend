@@ -40,8 +40,9 @@ frontend/
 │   │   ├── todos.ts
 │   │   └── friends.ts
 │   └── middleware.ts      # Redux middleware
-└── styles/                # Глобальные стили
-    └── globals.css
+├── styles/                # Глобальные стили
+│    └── globals.css
+└── middleware.ts          #(Next.js)
 ```
 
 ## Поток данных
