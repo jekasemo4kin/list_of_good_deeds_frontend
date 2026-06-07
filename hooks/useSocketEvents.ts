@@ -10,6 +10,12 @@ export const useSocketEvents = () => {
   const currentUser = useSelector((state: RootState) => state.auth.user);
 
   useEffect(() => {
+    
+    if (!currentUser) {
+      socket.disconnect();
+      return;
+    }
+
     socket.connect();
 
     socket.on('todo_updated', (event) => {
@@ -40,5 +46,5 @@ export const useSocketEvents = () => {
       socket.off('friendship_updated');
       socket.disconnect();
     };
-  }, [dispatch, currentUser?.id]);
+  }, [dispatch, currentUser]);
 };

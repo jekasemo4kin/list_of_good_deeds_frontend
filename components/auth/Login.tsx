@@ -23,6 +23,7 @@ export default function Login() {
         username: username.trim(), 
         password: password.trim() 
       });
+      console.log('User data from server:', data);
       dispatch(setUser(data));
       router.push('/');
     } catch (e) {
