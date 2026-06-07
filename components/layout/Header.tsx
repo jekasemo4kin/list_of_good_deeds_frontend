@@ -4,6 +4,7 @@ import { RootState } from '../../store';
 import { logout } from '../../store/slices/auth';
 import { authApi } from '../../lib/api';
 import { useRouter } from 'next/navigation';
+import { closeModal } from '@/store/slices/ui';
 
 export default function Header() {
   const { user } = useSelector((state: RootState) => state.auth);
@@ -11,12 +12,14 @@ export default function Header() {
   const router = useRouter();
 
   const handleLogout = async () => {
+    dispatch(closeModal());
     await authApi.logout();
     dispatch(logout());
     router.push('/login');
   };
 
   const handleDeleteUser = async () => {
+    dispatch(closeModal());
     await authApi.deleteProfile();
     dispatch(logout());
     router.push('/login');
@@ -32,7 +35,7 @@ export default function Header() {
       </button>
 
       <div className="flex items-center gap-4">
-        <span className="hidden text-sm font-medium md:block">Привет, {user?.username}!</span>
+        <span className="block text-sm font-medium md:block">Привет, {user?.username}!</span>
         <button 
           onClick={handleLogout}
           className="rounded bg-gray-200 px-3 py-1 text-sm hover:bg-gray-300"

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { socket } from '../lib/socket';
 import { updateTodoLocally, removeTodoLocally, removeTodoLocallyByAuthor } from '../store/slices/todos';
+import { removeFriendLocally, addFriendLocally, fetchFriends } from '../store/slices/friends';
 import { logout } from '../store/slices/auth';
 import { RootState } from '../store';
 
@@ -10,7 +11,6 @@ export const useSocketEvents = () => {
   const currentUser = useSelector((state: RootState) => state.auth.user);
 
   useEffect(() => {
-    
     if (!currentUser) {
       socket.disconnect();
       return;
@@ -27,17 +27,21 @@ export const useSocketEvents = () => {
     });
 
     socket.on('user_deleted', (data) => {
-      // Если удалили нас — разлогиниваем
       if (currentUser?.id === data.userId) {
         dispatch(logout());
       } else {
-        // Если удалили кого-то другого — убираем его дела
         dispatch(removeTodoLocallyByAuthor(data.userId));
+        // Добавьте также удаление из друзей, если вдруг удаленный пользователь был другом
+        dispatch(removeFriendLocally(data.userId));
       }
     });
 
     socket.on('friendship_updated', (data) => {
-      // Здесь будет логика обновления списка друзей
+      if (data.type === 'added') {
+        dispatch(addFriendLocally(data.user)); 
+      } else {
+        dispatch(removeFriendLocally(data.user.id));
+      }
     });
 
     return () => {

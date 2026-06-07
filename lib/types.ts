@@ -15,15 +15,14 @@ export interface Todo {
   updatedAt: string;
 }
 
-export interface Friendship {
-  followerId: string;
-  followingId: string;
+export interface Friend {
+  id: string;
+  username: string;
 }
 
-// Типы для событий сокетов
 export interface TodoUpdatedEvent {
   type: 'created' | 'updated' | 'deleted';
-  todo: Todo | { id: string };
+  todo: Todo;
 }
 
 export interface UserDeletedEvent {
@@ -33,7 +32,7 @@ export interface UserDeletedEvent {
 export interface FriendshipUpdatedEvent {
   type: 'added' | 'removed';
   followerId: string;
-  followingId: string;
+  user: Friend; 
 }
 
 export interface RegisterDto {

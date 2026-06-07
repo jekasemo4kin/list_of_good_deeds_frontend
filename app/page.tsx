@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import ActionButtons from '../components/ui/ActionButtons';
 import ResultList from '../components/todos/ResultList';
-import CreateTodoModal from '../components/todos/CreateTodoModal';
 
 export default function HomePage() {
   const { isAuthenticated, isInitialized } = useSelector((state: RootState) => state.auth);
@@ -29,10 +28,8 @@ export default function HomePage() {
         <ActionButtons />
         <SearchBar />
         <TitleBar />
-        <ResultList /> {/* Список появился здесь */}
+        <ResultList />
       </div>
-
-      <CreateTodoModal />
     </MainLayout>
   );
 }

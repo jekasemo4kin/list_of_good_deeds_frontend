@@ -38,4 +38,9 @@ export const todosApi = {
   delete: (id: string) => api.delete(`/todos/${id}`),
 };
 
+export const friendsApi = {
+  getFriends: () => api.get<User[]>('/friends'), // Возвращает массив друзей
+  toggleFriend: (userId: string) => api.post<{ message: string }>(`/friends/${userId}`),
+};
+
 export default api;

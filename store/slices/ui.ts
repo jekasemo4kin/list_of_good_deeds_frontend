@@ -1,14 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+interface UIState {
+  modalType: 'createTodo' | 'friendsList' | null;
+}
+
 const uiSlice = createSlice({
   name: 'ui',
-  initialState: { isCreateModalOpen: false },
+  initialState: { modalType: null } as UIState,
   reducers: {
-    setCreateModalOpen: (state, action: PayloadAction<boolean>) => {
-      state.isCreateModalOpen = action.payload;
+    openModal: (state, action: PayloadAction<'createTodo' | 'friendsList'>) => {
+      state.modalType = action.payload;
+    },
+    closeModal: (state) => {
+      state.modalType = null;
+    },
+    resetUI: () => {
+      return { modalType: null };
     },
   },
 });
 
-export const { setCreateModalOpen } = uiSlice.actions;
+export const { openModal, closeModal, resetUI } = uiSlice.actions;
 export default uiSlice.reducer;
