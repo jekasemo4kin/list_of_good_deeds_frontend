@@ -13,15 +13,16 @@ export default function HomePage() {
   const { isAuthenticated, isInitialized } = useSelector((state: RootState) => state.auth);
   const router = useRouter();
 
-  useEffect(() => {
-
-    if (isInitialized && !isAuthenticated) {
-      router.replace('/login');
-    }
-  }, [isAuthenticated, isInitialized, router]);
-
+  console.log('Is auth:', isAuthenticated)
   if (!isInitialized) return <div>Загрузка...</div>;
   
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.replace('/login');
+    }
+  }, [isAuthenticated, router]);
+
   if (!isAuthenticated) return null;
   
   return (
