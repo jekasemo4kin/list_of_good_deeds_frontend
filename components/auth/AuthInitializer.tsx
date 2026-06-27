@@ -16,7 +16,8 @@ export default function AuthInitializer({ children }: { children: React.ReactNod
             const { data } = await authApi.getMe();
             dispatch(setUser(data));
         } catch (e) {
-            dispatch(logout());
+            console.log("Not authenticated yet",e);
+            //dispatch(logout());
         } finally {
             dispatch(setInitialized());
         }

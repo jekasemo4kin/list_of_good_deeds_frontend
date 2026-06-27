@@ -15,10 +15,12 @@ export default function HomePage() {
 
   useEffect(() => {
 
-    if (isInitialized && !isAuthenticated && window.location.pathname !== '/login') {
-      router.push('/login');
-    }
-  }, [isAuthenticated, isInitialized, router]);
+  if (!isInitialized) return; 
+
+  if (!isAuthenticated) {
+    router.push('/login');
+  }
+}, [isAuthenticated, isInitialized, router]);
 
   if (!isInitialized) return null;
   

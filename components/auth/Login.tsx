@@ -25,6 +25,7 @@ export default function Login() {
       });
       console.log('User data from server:', data);
       dispatch(setUser(data));
+      console.log('Login success, current state')
       router.push('/');
     } catch (e) {
       alert('Ошибка входа: неверные данные');
