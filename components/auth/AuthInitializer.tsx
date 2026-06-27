@@ -11,6 +11,7 @@ export default function AuthInitializer({ children }: { children: React.ReactNod
 
 
   useEffect(() => {
+    console.log("AuthInitializer running...");
     const initAuth = async () => {
       try {
         const { data } = await authApi.getMe();

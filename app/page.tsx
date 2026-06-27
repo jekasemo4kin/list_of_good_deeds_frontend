@@ -14,12 +14,15 @@ export default function HomePage() {
   const router = useRouter();
 
   useEffect(() => {
-    if (!isAuthenticated) {
+
+    if (isInitialized && !isAuthenticated) {
       router.replace('/login');
     }
-  }, [isAuthenticated, router]);
+  }, [isAuthenticated, isInitialized, router]);
 
-  if (!isInitialized) return null;
+  if (!isInitialized) return <div>Загрузка...</div>;
+  
+  if (!isAuthenticated) return null;
   
   return (
     <MainLayout>
