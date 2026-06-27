@@ -14,13 +14,10 @@ export default function HomePage() {
   const router = useRouter();
 
   useEffect(() => {
-
-  if (!isInitialized) return; 
-
-  if (!isAuthenticated) {
-    router.push('/login');
-  }
-}, [isAuthenticated, isInitialized, router]);
+    if (!isAuthenticated) {
+      router.replace('/login');
+    }
+  }, [isAuthenticated, router]);
 
   if (!isInitialized) return null;
   
