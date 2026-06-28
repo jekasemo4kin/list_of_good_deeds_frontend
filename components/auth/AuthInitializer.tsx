@@ -14,9 +14,12 @@ export default function AuthInitializer({ children }: { children: React.ReactNod
     console.log("AuthInitializer running...");
     const initAuth = async () => {
       try {
+        console.log("Checking session...");
         const { data } = await authApi.getMe();
+        console.log("Session valid:", data);
         dispatch(setUser(data));
       } catch (e) {
+        console.error("Session check failed, status:", e);
         console.log(e);
       } finally {
         dispatch(setInitialized());

@@ -31,7 +31,6 @@ export const useSocketEvents = () => {
         dispatch(logout());
       } else {
         dispatch(removeTodoLocallyByAuthor(data.userId));
-        // Добавьте также удаление из друзей, если вдруг удаленный пользователь был другом
         dispatch(removeFriendLocally(data.userId));
       }
     });
