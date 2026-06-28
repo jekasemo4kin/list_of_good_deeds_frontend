@@ -7,11 +7,19 @@ import { authApi } from '../../lib/api';
 
 export default function AuthInitializer({ children }: { children: React.ReactNode }) {
   const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.auth.user);
   const isInitialized = useSelector((state: RootState) => state.auth.isInitialized);
 
 
   useEffect(() => {
+
+    if (user) {
+      dispatch(setInitialized());
+      return;
+    }
+
     console.log("AuthInitializer running...");
+
     const initAuth = async () => {
       try {
         console.log("Checking session...");
@@ -20,7 +28,6 @@ export default function AuthInitializer({ children }: { children: React.ReactNod
         dispatch(setUser(data));
       } catch (e) {
         console.error("Session check failed, status:", e);
-        console.log(e);
       } finally {
         dispatch(setInitialized());
       }
