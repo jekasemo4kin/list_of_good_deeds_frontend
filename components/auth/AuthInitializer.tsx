@@ -33,7 +33,7 @@ export default function AuthInitializer({ children }: { children: React.ReactNod
       }
     };
     initAuth();
-  }, [dispatch]);
+  }, [dispatch, user]);
 
   if (!isInitialized) return <div>Загрузка...</div>;
 
